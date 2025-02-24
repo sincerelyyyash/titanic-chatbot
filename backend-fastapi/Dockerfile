@@ -2,8 +2,8 @@ FROM python:3.9
 
 WORKDIR /app
 
-COPY ./app /app
-COPY ./data /app/data  # Ensure the data folder is copied
+COPY ./app /app/app
+COPY ./data /app/data  
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
