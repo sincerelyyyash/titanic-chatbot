@@ -1,13 +1,13 @@
-from app.llm_agent import extract_relevant_data
-import pandas as pd
-
-df = pd.read_csv("data/titanic.csv")
+from app.llm_agent import extract_relevant_data, detect_visualization_type
 
 def generate_visualization_data(query):
-    """Returns structured data for visualization instead of images."""
-    extracted_data = extract_relevant_data({"query": query, "intent_response": query})
+    """Generates structured data for visualization based on user query."""
     
-    if "histogram" in query.lower() and "age" in query.lower():
-        return {"age_histogram": df["Age"].dropna().tolist()}      
-    return extracted_data["data"]
+    extracted_data = extract_relevant_data({"query": query, "intent_response": query})
+    visualization_type = detect_visualization_type(query)
+
+    if extracted_data.get("visualization"):
+        extracted_data["visualization"]["type"] = visualization_type or extracted_data["visualization"]["type"]
+
+    return extracted_data
 

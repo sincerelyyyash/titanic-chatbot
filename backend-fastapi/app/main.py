@@ -18,7 +18,7 @@ async def chat(request: QueryRequest):
                 visualization_data = generate_visualization_data(request.query)
                 break
 
-        return JSONResponse(content={"answer": response_text, "visualization_data": visualization_data})
+        return JSONResponse(content={"answer": response_text["answer"], "visualization_data": visualization_data})
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
