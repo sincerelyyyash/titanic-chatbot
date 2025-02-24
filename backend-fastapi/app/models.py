@@ -1,10 +1,10 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Dict, Optional
 
 class QueryRequest(BaseModel):
     query: str
 
 class QueryResponse(BaseModel):
     answer: str
-    image: Optional[str] = None
+    visualization_data: Optional[Dict] = None
 

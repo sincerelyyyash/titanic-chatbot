@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from app.llm_agent import ask_titanic_ai
-from app.data_analysis import generate_visual
+from app.data_analysis import generate_visualization_data
 from app.models import QueryRequest, QueryResponse
 
 app = FastAPI(title="Titanic Chatbot API", version="1.0")
@@ -12,13 +12,13 @@ async def chat(request: QueryRequest):
         response_text = ask_titanic_ai(request.query)
 
         words = request.query.lower().split()
-        image_data = None
-        for keyword in ["age", "fare", "survival"]:
+        visualization_data = None
+        for keyword in ["age", "fare", "survival", "gender", "class"]:
             if keyword in words:
-                image_data = generate_visual(keyword)
+                visualization_data = generate_visualization_data(request.query)
                 break
 
-        return JSONResponse(content={"answer": response_text, "image": image_data})
+        return JSONResponse(content={"answer": response_text, "visualization_data": visualization_data})
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
