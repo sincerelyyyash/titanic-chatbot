@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-API_URL = "http://127.0.0.1:8000/chat/"
+API_URL = "https://tt.api.sincerelyyyash/chat/"
 
 st.set_page_config(page_title="Titanic Chatbot", page_icon="??", layout="wide")
 st.title("Titanic Chatbot")
