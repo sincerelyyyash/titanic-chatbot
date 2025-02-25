@@ -5,3 +5,4 @@ langchain
 typing
 pandas
 dotenv
+langchain_google_genai
