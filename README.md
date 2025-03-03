@@ -63,6 +63,7 @@ streamlit run app.py
 - **Pandas & NumPy** (Data analysis)
 - **Matplotlib** (Data visualization)
 - **Docker & Docker Compose** (Containerization)
+- - **Titanic Dataset** (from kaggle)
 
 ## License
 MIT License
