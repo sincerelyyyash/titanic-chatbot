@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from app.llm_agent import ask_titanic_ai
 from app.data_analysis import generate_visualization_data
 from app.models import QueryRequest, QueryResponse
+from .greeting import get_greeting
 
 app = FastAPI(title="Titanic Chatbot API", version="1.0")
 
@@ -22,4 +23,9 @@ async def chat(request: QueryRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/greet", tags=["Greeting"])
+def greet():
+    """Endpoint to return a simple greeting message."""
+    return {"message": get_greeting()}
 
